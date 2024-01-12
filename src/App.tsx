@@ -1,9 +1,10 @@
+import MainLayout from "./Components/Layout/MainLayout"
 
 function App() {
  
   return (
     <>
-      <h1 className="text-red-400">hello</h1>
+      <MainLayout />
     </>
   )
 }
