@@ -1,0 +1,11 @@
+@layer base {
+   h1 {
+      @apply tex-4xl;
+   }
+   h2 {
+      @apply tex-3xl;
+   }
+   h3 {
+      @apply tex-2xl;
+   }
+}
