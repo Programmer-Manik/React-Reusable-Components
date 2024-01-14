@@ -1,8 +1,18 @@
+import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef } from "react";
 import cn from "../../Utils/cn"
 
-const Button = ({className, outline , variant}) => {
+type Tref = HTMLButtonElement;
 
-   const getVariant = (variant) => {
+type TVariant = 'solid'| 'ghost' | 'outline'
+
+type tButtonOptions = {
+   variant?:TVariant
+}
+
+type TButton = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>,HTMLButtonElement> & tButtonOptions 
+
+const Button = forwardRef<Tref,TButton >(({className, variant="solid", ...rest}, ref) => {
+   const getVariant = (variant :TVariant) => {
       switch (variant) {
          case 'outline' :
             return 'btn-outline';
@@ -13,15 +23,15 @@ const Button = ({className, outline , variant}) => {
       }
    }
    return (
-      <button className={cn(
-          getVariant(variant),
-         {'border border-purple-500 bg-opacity-10': outline,},
-         className
-      )}
+      <button 
+     
+      {...rest}
+      ref={ref}
+      className={cn(getVariant(variant),className)}
       >
          click
       </button>
    )
-}
+})
 
 export default Button
