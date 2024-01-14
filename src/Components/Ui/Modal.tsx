@@ -36,7 +36,11 @@ const Modal = ({isOpen, onClose, children}) => {
 
 const CloseButton = () => {
    const {onClose} = useContext(ModalContext)
-   return <button onClick={onClose}>close button</button>
+   return <button onClick={onClose}>
+      <svg className="size-5 bg-red-400 text-white p-0.5 rounded-md" fill="none" strokeWidth={4} stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+   </svg>
+ </button>
 };
 Modal.CloseButton = CloseButton ;
 
