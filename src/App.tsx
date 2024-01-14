@@ -7,7 +7,11 @@ function App() {
  
   return (
     <Container >
-          <Button variant="ghost" className={undefined} outline={undefined} />
+          <div className="h-screen w-full flex justify-center items-center">
+            <div className="w-96 border border-red-300 p-10">
+               <Button variant="ghost" className={undefined} outline={undefined}></Button>
+            </div>
+          </div>
     </Container>
   )
 }
