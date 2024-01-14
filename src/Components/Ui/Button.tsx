@@ -1,13 +1,23 @@
 import cn from "../../Utils/cn"
 
-const Button = ({className, outline}) => {
-   // return (
-   //    <button className={cn(
-   //       'bg-purple-500 px-3 py-2 required-md',{
-   //          'border border-purple-500 bg-opacity-10': outline,
-   //       },
-   //       className
-   //    )}
+const Button = ({className, outline , variant}) => {
+
+   const getVariant = (variant) => {
+      switch (variant) {
+         case 'outline' :
+            return 'btn-outline';
+         case 'ghost':
+            return 'btn-ghost';
+         default :
+         return 'btn'
+      }
+   }
+   return (
+      <button className={cn(
+          getVariant(variant),
+         {'border border-purple-500 bg-opacity-10': outline,},
+         className
+      )}
       >
          click
       </button>

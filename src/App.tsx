@@ -7,7 +7,7 @@ function App() {
  
   return (
     <Container >
-          <Button outline={false} className={undefined} />
+          <Button variant="ghost" className={undefined} outline={undefined} />
     </Container>
   )
 }
