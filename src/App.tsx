@@ -1,7 +1,7 @@
 
 // import MainLayout from "./Components/Layout/MainLayout"
 // import Button from "./Components/Ui/Button"
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import Container from "./Components/Ui/Container"
 import Modal from "./Components/Ui/Modal";
 
@@ -13,6 +13,14 @@ function App() {
     setModal((prev) => !prev)
   }
 
+  const handleSubmit = (e:FormEvent) => {
+    e.preventDefault();
+    console.log(e)
+    if(true){
+      handleModalClose();
+    }
+  }
+
   return (
     <Container >
           <div className="h-screen w-full flex justify-center items-center">
@@ -22,7 +30,11 @@ function App() {
                 <Modal.Header>
                 <Modal.CloseButton></Modal.CloseButton>
                 </Modal.Header>
-                <h1>this is a modal</h1> 
+                {/* <h1>this is a modal</h1>  */}
+                <form onSubmit={handleSubmit}>
+                  <input className="border border-red-400" type="text" />
+                  <button type="submit">submit</button>
+                </form>
                 </Modal>
                 {/* <Button variant="ghost" className={undefined} > click </Button> */}
             </div>
