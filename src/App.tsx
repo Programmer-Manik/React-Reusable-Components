@@ -19,10 +19,11 @@ function App() {
             <div className="w-96 border border-red-300 p-10">
                <button onClick={()=> setModal((prev) => !prev)}>Modal Open</button>
                <Modal isOpen={modal} onClose={handleModalClose} >
-               <Modal.CloseButton />
+                <Modal.Header>
+                <Modal.CloseButton></Modal.CloseButton>
+                </Modal.Header>
                 <h1>this is a modal</h1> 
                 </Modal>
-               
                 {/* <Button variant="ghost" className={undefined} > click </Button> */}
             </div>
           </div>
