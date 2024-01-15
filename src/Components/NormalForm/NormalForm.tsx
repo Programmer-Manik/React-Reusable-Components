@@ -30,6 +30,23 @@ const NormalForm = () => {
           <label className="block" htmlFor="name">password</label>
           <input className="w-full" type="text" id="name" {...register("name")} />
         </div>
+        <div className="w-full max-w-md">
+        <label className="block" htmlFor="name">Select</label>
+         <select>
+               <option>one</option>
+               <option>tow</option>
+               <option>three</option>
+               <option>four</option>
+            </select>
+        </div>
+        <div className="w-full max-w-md">
+        <label className="block" htmlFor="name">textarea</label>
+            <textarea></textarea>
+        </div>
+        <div className="w-full max-w-md">
+            <label className="block" htmlFor="name">checkbox</label>
+            <input type="checkbox" name="" id="" />
+        </div>
       </div>
       {/* <button type="submit">submit</button> */}
     </form>
