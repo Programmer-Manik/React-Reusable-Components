@@ -2,9 +2,16 @@
 import { useForm } from "react-hook-form";
 import cn from "../../Utils/cn";
 import Button from "../Ui/Button";
+import { z } from "zod";
+
+const signUpSchema = z.object({
+   name: z.string(),
+   email: z.string().email(),
+   password: z.string().min(10, 'Too short')
+})
 
 const NormalForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm();
 
   const onSubmitData = (data: any) => {
     console.log(data);
@@ -33,33 +40,36 @@ const NormalForm = () => {
             className="w-full"
             type="text"
             id="name"
-            {...register("name")}
+            {...register("name",{required:true})}
           />
+          {errors.name && <span className="text-xs text-red-500">this  field is required</span>}
         </div>
         <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
+          <label className="block" htmlFor="email">
             email
           </label>
           <input
             className="w-full"
-            type="text"
-            id="name"
-            {...register("name")}
+            type="email"
+            id="email"
+            {...register("email",{required:true})}
           />
+          {errors.email && <span className="text-xs text-red-500">this  field is required</span>}
         </div>
         <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
+          <label className="block" htmlFor="password">
             password
           </label>
           <input
             className="w-full"
-            type="text"
+            type="password"
             id="name"
-            {...register("name")}
+            {...register("password",{required:true})}
           />
+          {errors.password && <span className="text-xs text-red-500">this  field is required</span>}
         </div>
         <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
+          <label className="block" htmlFor="select">
             Select
           </label>
           <select>
@@ -70,27 +80,29 @@ const NormalForm = () => {
           </select>
         </div>
         <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
+          <label className="block" htmlFor="textarea">
             textarea
           </label>
           <textarea></textarea>
         </div>
         <div className="w-full max-w-md">
-          <label className="block" htmlFor="name">
+          <label className="block" htmlFor="checkbox">
             checkbox
           </label>
-          <input type="checkbox" name="" id="" />
+          <input type="checkbox" name="checkbox" />
         </div>
       </div>
       <div
-          className={cn("grid grid-cols-1 justify-items-center gap-5 my-8 ", {
-            "md:grid-cols-2": double,
-          })}
-        >
-          <div className="w-full max-w-md col-start-1 md:col-start-2 flex justify-end">
-             <Button className="w-full md:w-fit" type="submit">submit</Button >
-          </div>
+        className={cn("grid grid-cols-1 justify-items-center gap-5 my-8 ", {
+          "md:grid-cols-2": double,
+        })}
+      >
+        <div className="w-full max-w-md col-start-1 md:col-start-2 flex justify-end">
+          <Button className="w-full md:w-fit" type="submit">
+            submit
+          </Button>
         </div>
+      </div>
     </form>
   );
 };
