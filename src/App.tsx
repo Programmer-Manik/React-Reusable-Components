@@ -3,7 +3,8 @@
 // import { FormEvent, useState } from "react"
 //import NormalForm from "./Components/NormalForm/NormalForm"
 // import Modal from "./Components/Ui/Modal";
-import {Form, FormSection, FormSubmit} from "./Components/ReusableForm";
+import {  useForm } from "react-hook-form";
+import {Form, FormSection, FormSubmit, Input} from "./Components/ReusableForm";
 import Container from "./Components/Ui/Container";
 
 function App() {
@@ -42,11 +43,28 @@ function App() {
   // )
 
   // form component structure function
- 
+  const { handleSubmit, register, formState:{errors}} = useForm();
+  const FormOnSubmit = (data: any) => {
+    console.log(data)
+  }
   return (
     <Container>
-      <Form>
-        <FormSection />
+      <Form double={true} onSubmit={handleSubmit(FormOnSubmit)}>
+        <FormSection>
+          <div className="w-full max-w-md">
+            <label className="block" htmlFor="name">
+              name
+            </label>
+            <input
+              className="w-full"
+              type="text"
+              id="name"
+              {...register("name")}
+            />
+            {errors.name && <span className="text-xs text-red-500">{errors.name.message}</span>}
+          </div>
+          <Input type='email' label="Email" errors={errors} register={register('email')}/>
+        </FormSection>
         <FormSubmit />
       </Form>
     </Container>
