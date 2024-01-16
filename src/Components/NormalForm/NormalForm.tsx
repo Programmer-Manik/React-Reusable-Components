@@ -2,16 +2,10 @@
 import { useForm } from "react-hook-form";
 import cn from "../../Utils/cn";
 import Button from "../Ui/Button";
-import { z } from "zod";
 import {zodResolver} from '@hookform/resolvers/zod'
+import { TNormalForm, signUpSchema } from "./validation";
 
-const signUpSchema = z.object({
-   name: z.string().min(1, {message:'name is required'}),
-   email: z.string().email().min(1, {message:'email is required'}),
-   password: z.string().min(10, 'Too short')
-})
 
-type TNormalForm = z.infer<typeof signUpSchema>;
 
 const NormalForm = () => {
   const { register, handleSubmit, formState:{errors} } = useForm<TNormalForm>({resolver:zodResolver(signUpSchema)});
