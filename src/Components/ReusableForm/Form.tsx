@@ -1,10 +1,10 @@
 
 
-export const Form = () => {
+export const Form = ({children}) => {
    return (
-      <div>
-         
-      </div>
+     <div>
+      <h1>{children}</h1>
+     </div>
    );
 };
 

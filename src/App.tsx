@@ -1,12 +1,14 @@
-
 // import MainLayout from "./Components/Layout/MainLayout"
 // import Button from "./Components/Ui/Button"
 // import { FormEvent, useState } from "react"
-import NormalForm from "./Components/NormalForm/NormalForm"
-import Container from "./Components/Ui/Container"
+//import NormalForm from "./Components/NormalForm/NormalForm"
 // import Modal from "./Components/Ui/Modal";
+import {Form, FormSection, FormSubmit} from "./Components/ReusableForm";
+import Container from "./Components/Ui/Container";
 
 function App() {
+  //modal function work
+
   // const [modal , setModal] = useState(false);
   // const handleModalClose = () => {
   //   setModal((prev) => !prev)
@@ -39,11 +41,24 @@ function App() {
   //   </Container>
   // )
 
+  // form component structure function
+ 
   return (
     <Container>
-          <NormalForm />
+      <Form>
+        <FormSection />
+        <FormSubmit />
+      </Form>
     </Container>
-  )
+  );
+
+  // NormalForm ar work
+  //   return (
+  //     <Container>
+  //           <NormalForm />
+  //     </Container>
+  //   )
+  // }
 }
 
-export default App
+export default App;
