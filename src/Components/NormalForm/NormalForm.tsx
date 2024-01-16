@@ -3,15 +3,16 @@ import { useForm } from "react-hook-form";
 import cn from "../../Utils/cn";
 import Button from "../Ui/Button";
 import { z } from "zod";
+import {zodResolver} from '@hookform/resolvers/zod'
 
 const signUpSchema = z.object({
-   name: z.string(),
-   email: z.string().email(),
+   name: z.string().min(1, {message:'name is required'}),
+   email: z.string().email().min(1, {message:'email is required'}),
    password: z.string().min(10, 'Too short')
 })
 
 const NormalForm = () => {
-  const { register, handleSubmit, formState:{errors} } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm({resolver:zodResolver(signUpSchema)});
 
   const onSubmitData = (data: any) => {
     console.log(data);
@@ -40,9 +41,9 @@ const NormalForm = () => {
             className="w-full"
             type="text"
             id="name"
-            {...register("name",{required:true})}
+            {...register("name")}
           />
-          {errors.name && <span className="text-xs text-red-500">this  field is required</span>}
+          {errors.name && <span className="text-xs text-red-500">{errors.name.message}</span>}
         </div>
         <div className="w-full max-w-md">
           <label className="block" htmlFor="email">
@@ -54,7 +55,7 @@ const NormalForm = () => {
             id="email"
             {...register("email",{required:true})}
           />
-          {errors.email && <span className="text-xs text-red-500">this  field is required</span>}
+          {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
         </div>
         <div className="w-full max-w-md">
           <label className="block" htmlFor="password">
@@ -66,7 +67,7 @@ const NormalForm = () => {
             id="name"
             {...register("password",{required:true})}
           />
-          {errors.password && <span className="text-xs text-red-500">this  field is required</span>}
+          {errors.password && <span className="text-xs text-red-500">{errors.password.message}</span>}
         </div>
         <div className="w-full max-w-md">
           <label className="block" htmlFor="select">
