@@ -11,8 +11,10 @@ const signUpSchema = z.object({
    password: z.string().min(10, 'Too short')
 })
 
+type TNormalForm = z.infer<typeof signUpSchema>;
+
 const NormalForm = () => {
-  const { register, handleSubmit, formState:{errors} } = useForm({resolver:zodResolver(signUpSchema)});
+  const { register, handleSubmit, formState:{errors} } = useForm<TNormalForm>({resolver:zodResolver(signUpSchema)});
 
   const onSubmitData = (data: any) => {
     console.log(data);
