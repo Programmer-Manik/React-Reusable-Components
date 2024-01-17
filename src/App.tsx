@@ -3,11 +3,12 @@
 // import { FormEvent, useState } from "react"
 //import NormalForm from "./Components/NormalForm/NormalForm"
 // import Modal from "./Components/Ui/Modal";
-import {  FieldValue, FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import {Form, FormSection, FormSubmit, Input} from "./Components/ReusableForm";
 import Container from "./Components/Ui/Container";
 import { z } from "zod";
 
+ 
 function App() {
   //modal function work
 
@@ -45,14 +46,15 @@ function App() {
 
   // form component structure function
   const { handleSubmit, register, formState:{errors}} = useForm<TText>();
-  const FormOnSubmit = (data: FieldValue) => {
+ 
+  const FormOnSubmit = (data:FieldValues) => {
     console.log(data)
   }
   const TestSchema = z.object({
     name:z.string(),
     email:z.string().email(),
   });
-
+  
   type TText = z.infer<typeof TestSchema>
 
   return (
