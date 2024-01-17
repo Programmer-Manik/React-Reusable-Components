@@ -3,9 +3,10 @@
 // import { FormEvent, useState } from "react"
 //import NormalForm from "./Components/NormalForm/NormalForm"
 // import Modal from "./Components/Ui/Modal";
-import {  useForm } from "react-hook-form";
+import {  FieldValue, FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import {Form, FormSection, FormSubmit, Input} from "./Components/ReusableForm";
 import Container from "./Components/Ui/Container";
+import { z } from "zod";
 
 function App() {
   //modal function work
@@ -43,13 +44,20 @@ function App() {
   // )
 
   // form component structure function
-  const { handleSubmit, register, formState:{errors}} = useForm();
-  const FormOnSubmit = (data: any) => {
+  const { handleSubmit, register, formState:{errors}} = useForm<TText>();
+  const FormOnSubmit = (data: FieldValue) => {
     console.log(data)
   }
+  const TestSchema = z.object({
+    name:z.string(),
+    email:z.string().email(),
+  });
+
+  type TText = z.infer<typeof TestSchema>
+
   return (
     <Container>
-      <Form double={true} onSubmit={handleSubmit(FormOnSubmit)}>
+      <Form double={true} onSubmit={handleSubmit(FormOnSubmit) as SubmitHandler<FieldValues>}>
         <FormSection>
           <div className="w-full max-w-md">
             <label className="block" htmlFor="name">
